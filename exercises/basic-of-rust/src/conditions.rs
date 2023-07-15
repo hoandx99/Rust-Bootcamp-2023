@@ -4,15 +4,23 @@
 // - another function call
 // - additional variables
 pub fn bigger(a: i32, b: i32) -> i32 {
-    todo!()
+    if a <= b {
+        b 
+    } else {
+        a
+    }
 }
 
 //Exercise 2
 // Input: Provide an arbitrary value of number
 // Check number is Positive or Negative or Zero
 // Output: &str
-fn check_number(number: u32) -> &'static str {
-    todo!()
+fn check_number(number: i32) -> &'static str {
+    match number {
+        0 => "Zero",
+        _ if number > 0 => "Positive",
+        _ => "Negative",
+    }
 }
 
 // Exercise 3
@@ -20,10 +28,10 @@ fn check_number(number: u32) -> &'static str {
 // Step 2: Get the bar_for_fuzz and default_to_baz tests passing!
 
 pub fn foo_if_fizz(fizzish: &str) -> &str {
-    if fizzish == "fizz" {
-        "foo"
-    } else {
-        1
+    match fizzish {
+        "fizz" => "foo",
+        "fuzz" => "bar",
+        _ => "baz"
     }
 }
 
@@ -31,14 +39,21 @@ pub fn foo_if_fizz(fizzish: &str) -> &str {
 // Determine if a given year is a leap year
 // Implement logic
 fn is_leap_year(year: i32) -> bool {
-    todo!()
+    match year {
+        _ if year % 400 == 0 => true,
+        _ if year % 4 == 0 && year % 100 != 0 => true,
+        _ => false,
+    }
 }
 
 // Exercise 5
 // Calculate the factorial of a number
 // Implement logic
 fn factorial(n: u32) -> u32 {
-    todo!()
+    match n {
+        0 => 1,
+        _ => n * factorial(n - 1),
+    }
 }
 
 // Exercise 6
@@ -46,7 +61,19 @@ fn factorial(n: u32) -> u32 {
 // Implement logic
 
 fn is_prime(n: u32) -> bool {
-    todo!()
+    let sqrt_num = (n as f64).sqrt() as u32;
+    match n {
+        0 | 1 => false,
+        2 => true,
+        _ => {
+            for i in 2..=sqrt_num {
+                if n % i == 0 {
+                    return false;
+                }
+            }
+            return true;
+        },
+    }
 }
 
 
